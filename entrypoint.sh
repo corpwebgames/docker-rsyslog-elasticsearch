@@ -20,5 +20,5 @@ if [ -n "$ESLOG_HOST" ]; then
 		sed s/9200/$ESLOG_ES_PORT/g -i /etc/rsyslog.d/rsyslog_elasticsearch.conf
 	fi
 fi
-
+nohup cron -f > /dev/null 2>&1 &
 /usr/sbin/rsyslogd $@

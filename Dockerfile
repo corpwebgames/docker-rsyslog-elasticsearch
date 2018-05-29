@@ -16,6 +16,7 @@ RUN       apt-get -y update && \
 COPY      entrypoint.sh                  /
 COPY	  rsyslog.conf                   /etc/
 COPY      rsyslog_elasticsearch.conf     /etc/rsyslog.d/
-
+# bugfix ubuntu 14 https://bugs.launchpad.net/ubuntu/+source/logrotate/+bug/1644996
+RUN 	  sed -i 's/^su root syslog/su root adm/' /etc/logrotate.conf
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["-n"]
